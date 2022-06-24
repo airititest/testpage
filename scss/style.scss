@@ -1,0 +1,596 @@
+//基本檔案
+@import 'reset';
+@import 'owl-carousel';
+@import 'layout';
+@import 'color';
+@import 'fonts';
+@import 'animation';
+@import 'default';
+@import 'screen';
+
+//雲端字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+
+//共用模組
+$sans-serif: 'Poppins','Noto Sans SC', 'Noto Sans TC', sans-serif;
+$shadow-default: 0 4px 4px rgba(0, 0, 0, 0.25);
+$shadow-active: 0 4px 10px rgba(0, 0, 0, 0.25);
+$linear: 0.25s linear;
+.content-x{
+    @include p-x(8%, 8%);
+}
+.content-wrap-x{
+    @include p-x(16%, 16%);
+}
+.content-wrap-y{
+    @include p-y(40px, 40px);
+}
+.icons{
+    height: 32px;
+    min-width: 32px;
+    display: block;
+}
+.topic-content-title{
+    @include font(24px);
+    font-weight: bold;
+    font-family: $sans-serif;
+}
+.section-content-title{
+    @include font(40px);
+    font-weight: bold;
+    font-family: $sans-serif;
+}
+.section-content-line{
+    height: 3px;
+    width: 100px;
+    display: block;
+}
+.section-content-line{
+    background-color: $black;
+}
+.section-content-line-SDGs{
+    background-color: $SDGs;
+}
+.section-content-line-SDGs-01{
+    background-color: $SDGs-01;
+}
+.section-content-line-white{
+    background-color: $white;
+}
+a{
+    transition: $linear;
+}
+.hide{
+    display: none !important;
+}
+//js
+.scroll-off{
+    overflow-y: hidden !important;
+}
+.meun-open{
+    .header-topic{
+        right: 0 !important;
+        visibility: visible;
+    }
+    &:after{
+        visibility: visible;
+        opacity: 1;
+    }
+}
+.topic-content-title-active{
+    color: $gray !important;
+    background-color: $light-gray !important;
+}
+//內容樣式
+*{
+    @include font(18px);
+    font-family: 'Noto Serif SC', 'Noto Serif TC', sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+header{
+    .header-menu{
+        @include flex-row;
+        align-items: center;
+        li:first-child{
+            @include m-x(0, auto);
+        }
+        li:last-child{
+            @include m-x(auto, 0);
+        }
+    }
+    .header-topic{
+        @include flex-col;
+        @include fixed(0, unset, 0, none, auto);
+        width: 480px;
+        background-color: $white;
+        z-index: 99;
+        transition: $linear;
+        visibility: hidden;
+        opacity: 1;
+        .header-topic-btn{
+            li{
+                text-align: right;
+                border-bottom: 1px solid $gray*1.75;
+                a{
+                    @include p-x(40px, 40px);
+                    @include p-y(16px, 16px);
+                    display: inline-block;
+                }
+            }
+        }
+        .header-topic-menu{
+            flex-grow: 1;
+            overflow-y: auto;
+            li{
+                a{
+                    @include p-x(40px, 40px);
+                    @include p-y(32px, 32px);
+                    @include font(24px);
+                    display: block;
+                    color: $black;
+                }
+                a:hover{
+                    background-color: $gray;
+                    color: $white;
+                }
+            }
+        }
+    }
+    &:after{
+        @include fixed(0, 0, 0, none, auto);
+        @include bg-color-a($black, 0.4);
+        content: '';
+        height: 100%;
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: $linear;
+    }
+}
+
+.main-vision{
+    img{
+        width: 100%;
+    }
+    .main-vision-l{
+        display: block;
+    }
+    .main-vision-m, .main-vision-s{
+        display: none;
+    }
+}
+
+.interview{
+    @include flex-row;
+    align-items: flex-end;
+    .interview-content{
+        @include m-x(0, 12px);
+        width: 60%;
+        .interview-content-text{
+            @include font(20px);
+        }
+        .interview-content-enhance{
+            @include font(20px);
+            font-weight: bold;
+        }
+        .section-content-title, .section-content-line, .interview-content-text{
+            @include m-b(24px);
+        }
+    }
+    .interview-other{
+        @include m-x(12px, 0);
+        width: 40%;
+        .interview-other-link{
+            @include m-b(16px);
+            @include p-x(24px, 24px);
+            @include p-y(16px, 16px);
+            @include flex-row;
+            align-items: center;
+            width: 100%;
+            color: $black;
+            border: 1px solid $black;
+            span{
+                display: inline-block;
+                font-family: $sans-serif;
+            }
+            span:first-child{
+                @include m-r(auto);
+                font-weight: bold;
+            }
+            span:last-child{  
+                @include m-l(auto); 
+                background-image: url(../images/component/arrow-black.svg);
+                background-size: contain;
+                background-repeat: no-repeat;             
+            }
+        }
+        .link-topic-SDGs:hover{
+            background-color: $SDGs;
+            border: 1px solid $SDGs;
+            span:last-child{
+                background-image: url(../images/component/arrow-white.svg);
+            }
+        }
+        .link-topic-SDGs-01:hover{
+            background-color: $SDGs-01;
+            border: 1px solid $SDGs-01;
+        }
+        .interview-other-link:hover{
+            color: $white;
+            span:last-child{
+                background-image: url(../images/component/arrow-white.svg);
+            }
+        }
+        .interview-other-link:last-child{
+            @include m-b(0);
+        }
+    }
+}
+
+.professor{
+    @include flex-row;
+    .professor-profile{
+        @include m-x(0, 4%);
+        width: 36%;
+        .professor-profile-img{
+            @include m-b(40px);
+        }
+        .section-content-title{
+            span{
+                @include font(18px);
+                font-family: $sans-serif;
+            }
+        }
+        .professor-profile-other{
+            color: $gray;
+            display: block;
+            font-family: $sans-serif;
+        }
+        .section-content-title, .professor-profile-other, .section-content-line, .professor-profile-text{
+            @include m-b(24px);
+        }
+    }
+    .professor-research{
+        @include m-x(4%, 0);
+        width: 56%;
+        .professor-research-title{
+            @include font(40px);
+            font-weight: bold;
+            font-family: $sans-serif;
+        }
+        .professor-research-list{
+            li{
+                @include p-y(24px, 24px);
+                position: relative;
+                border-bottom: 1px dashed $black;
+                a{
+                    @include p-l(24px);
+                    @include flex-row;
+                    position: relative;
+                    span:first-child{
+                        @include m-r(16px);
+                        width: 100%;
+                        color: $black;
+                        font-family: $sans-serif;
+                    }
+                    span:last-child{
+                        @include m-l(16px);
+                        background-image: url(../images/component/link.svg);
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                    &:after{
+                        @include absolute(10px, none, none, 8px, auto);
+                        content: '';
+                        height: 8px;
+                        width: 8px;
+                        border-radius: 8px;
+                        background-color: $black;
+                    }
+                }
+                a:hover{
+                    span:first-child{
+                        color: white;
+                    }
+                    &:after{
+                        background-color: $white;
+                    }
+                }
+            }
+        }
+        .professor-research-SDGs{
+            li{
+                a{
+                    span:last-child{
+                        background-color: $SDGs;
+                    }
+                }
+                a:hover{
+                    background-color: $SDGs;
+                }
+            }
+        }
+        .professor-research-SDGs-01{
+            li{
+                a{
+                    span:last-child{
+                        background-color: $SDGs-01;
+                    }
+                }
+                a:hover{
+                    background-color: $SDGs-01;
+                }
+            }
+        }
+        .section-content-title, .section-content-line, .professor-research-list{
+            @include m-b(24px);
+        }
+    }
+}
+
+.subject{
+    background-color: $light-gray;
+    .section-content-title{
+        text-align: center;
+    }
+    .section-content-line{
+        @include m-x(auto, auto);
+    }
+    .subject-content-text{
+        text-align: center;
+    }
+    .subject-content-article{
+        @include flex-row;
+        align-items: stretch;
+        flex-wrap: wrap;
+        .subject-content-article-link{
+            @include m-x(1.25%, 1.25%);
+            @include m-y(0, 24px);
+            @include p-x(32px, 32px);
+            @include p-y(32px, 32px);
+            @include flex-col;
+            width: 22.5%;
+            background-color: $white;
+            box-shadow: $shadow-default;
+            box-sizing: border-box;
+            span{
+                @include font(40px);
+                color: $black;
+                display: block;
+            }
+            div{
+                @include m-x(0, auto);
+            }
+            article{
+                @include text-limted-rows(4);
+                flex-grow: 1;
+                color: $black;
+            }
+            p{
+                @include text-limted;
+                color: $gray;
+            }
+            span, article, p{
+                font-family: $sans-serif;
+                font-weight: bold;
+            }
+            span, div, article, p{
+                @include m-b(16px);
+                transition: $linear;
+            }
+        }
+        .subject-content-article-link:hover{
+            box-shadow: $shadow-active;
+            div{
+                height: 5px;
+                width: 100%;
+                background-color: $white;
+            }
+            span, article, p{
+                color: $white;
+            }
+        }
+        .subject-content-article-SDGs:hover{
+            background-color: $SDGs;
+        }
+        .subject-content-article-SDGs-01:hover{
+            background-color: $SDGs-01;
+        }
+    }
+    .section-content-title, .section-content-line, .subject-content-text, .subject-content-article{
+        @include m-b(24px);
+    }
+}
+.books{
+    .section-content-title{
+        text-align: center;
+    }
+    .section-content-line{
+        @include m-x(auto, auto);
+    }
+    .books-items{
+        @include flex-row;
+        flex-wrap: wrap;
+        .books-items-link{
+            @include m-x(1.25%, 1.25%);
+            @include m-b(40px);
+            width: 22.5%;
+            img{
+                box-shadow: $shadow-default;
+                position: relative;
+            }
+            div{
+                @include m-x(0, auto);
+            }
+            p{
+                @include text-limted-rows(2);
+                font-family: $sans-serif;
+                color: $black;
+            }
+            img, div{
+                @include m-b(24px);
+                transition: $linear;
+            }
+        }
+        .books-items-link:hover{
+            img{
+                opacity: 0.64;
+                box-shadow: $shadow-active;
+            }
+            .section-content-line{
+                height: 5px;
+                width: 100%;
+            }
+        }
+    }
+    .section-content-title, .section-content-line{
+        @include m-b(24px);
+    }
+}
+
+footer{
+    background-color: $black;
+    div{
+        @include m-x(auto, auto);
+        @include m-b(48px);
+        text-align: center;
+        p{
+            color: $white;
+        }
+        ul{
+            @include m-x(auto, auto);
+            display: inline-flex;
+        }
+    }
+    div:last-child{
+        @include m-b(0);
+    }
+}
+
+@include pad-l{
+    .main-vision{
+        .main-vision-m{
+            display: block;
+        }
+        .main-vision-l, .main-vision-s{
+            display: none;
+        }
+    }
+    .interview{
+        flex-wrap: wrap;
+        .interview-content{
+            @include m-x(auto, auto);
+            width: 100%;
+        }
+        .interview-other{
+            @include m-x(auto, 0);
+            width: 50%;
+        }
+        .interview-content, .interview-other{
+            @include m-b(40px);
+        }
+    }
+    .professor{
+        flex-wrap: wrap;
+        .professor-profile{
+            @include m-x(0, 0);
+            @include m-b(80px);
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+        .professor-research{
+            @include m-x(0, 0);
+            width: 100%;
+            .professor-research-list{
+                li:last-child{
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+    .subject{
+        @include p-x(32px, 32px);
+        .subject-content-article{
+            .subject-content-article-link{
+                @include m-x(1%, 1%);
+                width: 31.3%;
+            }
+        }
+    }
+    .books{
+        @include p-x(32px, 32px);
+    }
+}
+
+@include phone-l{
+    .content-x{
+        @include p-x(32px, 32px);
+    }
+    .content-wrap-x{
+        @include p-x(32px, 32px);
+    }
+    .section-content-title{
+        @include font(32px);
+    }
+    header{
+        .header-topic{
+            width: 320px;
+            .header-topic-btn{
+                li{
+                    a{
+                        @include p-x(32px, 32px);
+                        @include p-y(12px, 12px);
+                    }
+                }
+            }
+            .header-topic-menu{
+                li{
+                    a{
+                        @include p-x(32px, 32px);
+                        @include p-y(24px, 24px);
+                        @include font(18px);
+                    }
+                }
+            }
+        }
+    }
+    .main-vision{
+        .main-vision-l, .main-vision-m{
+            display: none;
+        }
+        .main-vision-s{
+            display: block;
+        }
+    }
+    .interview{
+        .interview-other{
+            width: 100%;
+        }
+    }
+    .subject{
+        .subject-content-article{
+            .subject-content-article-link{
+                @include m-x(0, 0);
+                width: 100%;
+            }
+        }
+    }
+    .books{
+        .books-items{
+            .books-items-link{
+                @include m-x(1.25%, 1.25%);
+                width: 47.5%;
+            }
+        }
+    }
+}
